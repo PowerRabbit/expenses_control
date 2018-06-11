@@ -63,6 +63,9 @@ typings/
 .next
 
 # custom
+**/.DS_Store
 package-lock.json
 functions/package-lock.json
 .firebaserc
+database.rules.json
+firebase.json
