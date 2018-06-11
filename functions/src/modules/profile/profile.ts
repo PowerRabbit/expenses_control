@@ -1,3 +1,5 @@
+import * as firebase from "firebase";
+
 export class Profile {
 
     constructor () {
@@ -5,6 +7,14 @@ export class Profile {
     }
 
     public getProfile(request, response) {
-        response.send('Hi there!\n\n');
+        const user = firebase.auth().currentUser;
+        let message = '';
+
+        if (user) {
+            message = 'logged';
+        } else {
+            message = 'not logged';
+        }
+        response.send('Hi there!\n\n' + message);
     }
 }
