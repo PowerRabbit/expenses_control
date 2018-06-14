@@ -69,3 +69,4 @@ functions/package-lock.json
 .firebaserc
 database.rules.json
 firebase.json
+functions/src/private-settings.ts
