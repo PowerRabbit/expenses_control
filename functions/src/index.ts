@@ -10,13 +10,16 @@ const profile = new Profile();
 
 firebase.auth().onAuthStateChanged((user) => {
     if (user) {
-      // User is signed in.
+        profile.isAuthorized = true;
     } else {
-      // No user is signed in.
+        profile.isAuthorized = false;
     }
 });
 
 export const getProfile = functions.https.onRequest(profile.getProfile);
 export const logIn = functions.https.onRequest((request, response) => {
     authService.logIn(request, response, profile);
+});
+export const logOut = functions.https.onRequest((request, response) => {
+    authService.logOut(request, response, profile);
 });
