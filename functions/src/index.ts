@@ -16,7 +16,9 @@ firebase.auth().onAuthStateChanged((user) => {
     }
 });
 
-export const getProfile = functions.https.onRequest(profile.getProfile);
+export const getProfile = functions.https.onRequest((request, response) => {
+    profile.getProfile.call(profile, request, response);
+});
 export const logIn = functions.https.onRequest((request, response) => {
     authService.logIn(request, response, profile);
 });
