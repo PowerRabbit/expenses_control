@@ -1,17 +1,17 @@
 import * as firebase from "firebase";
 import { authService } from '../auth/auth-service';
-import { errors } from "../errors/errors";
+import { Request, Response } from 'express';
 
 class User {
 
-    public userName: any;
+    public userName: string;
     public startTime: string;
     public endTime: string;
     public currentAmount: number;
     public expectedAmount: number;
 
-    constructor (currentUser) {
-        this.userName = currentUser;
+    constructor(currentUser: firebase.User) {
+        this.userName = currentUser.displayName;
         this.startTime = '';
         this.endTime = '';
         this.currentAmount = 0;
@@ -23,14 +23,14 @@ class User {
 export class Profile {
 
     public isAuthorized: boolean;
-    private currentUser: any;
+    private currentUser: firebase.User;
 
-    constructor () {
+    constructor() {
         this.currentUser = firebase.auth().currentUser;
         this.isAuthorized = !!this.currentUser;
     }
 
-    public getProfile(_request, response) {
+    public getProfile(_request: Request, response: Response) {
 
         if (this.isAuthorized) {
             response.json(new User(this.currentUser));

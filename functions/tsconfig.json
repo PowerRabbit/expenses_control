@@ -4,6 +4,7 @@
         "module": "es6",
         "moduleResolution": "node",
         "noImplicitReturns": true,
+        "noImplicitAny": true,
         "outDir": "dist",
         "sourceMap": true,
         "target": "es6"

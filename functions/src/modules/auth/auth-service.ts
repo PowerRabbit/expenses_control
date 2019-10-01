@@ -1,18 +1,19 @@
 import * as firebase from "firebase";
 import { errors } from "../errors/errors";
 import { Profile } from "../profile/profile";
+import { Request, Response } from 'express';
 
 export const authService = {
 
-    informWrongCredentials: (response, error?) => {
-        response.status = 401;
+    informWrongCredentials: (response: Response, error?: string) => {
+        response.status(401);
         response.json({
             additionalInfo: error,
             error: errors.notAuthorized
         });
     },
 
-    logIn: (request, response, profile: Profile) => {
+    logIn: (request: Request, response: Response, profile: Profile) => {
     //    console.log(request.body);
 
         const params = request.body || {};
@@ -33,7 +34,7 @@ export const authService = {
         }
     },
 
-    logOut: (_request, response, profile: Profile) => {
+    logOut: (_request: Request, response: Response, profile: Profile) => {
         firebase.auth().signOut()
         .then(() => {
             profile.isAuthorized = false;
