@@ -31,7 +31,7 @@ export class Profile {
     }
 
     public getProfile(_request, response) {
-        
+
         if (this.isAuthorized) {
             response.json(new User(this.currentUser));
         } else {

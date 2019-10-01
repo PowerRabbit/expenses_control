@@ -1,19 +1,19 @@
 import * as firebase from "firebase";
-import { Profile } from '../profile/profile';
 import { errors } from "../errors/errors";
+import { Profile } from "../profile/profile";
 
 export const authService = {
 
     informWrongCredentials: (response, error?) => {
         response.status = 401;
         response.json({
-            error: errors.notAuthorized,
-            additionalInfo: error
+            additionalInfo: error,
+            error: errors.notAuthorized
         });
     },
 
     logIn: (request, response, profile: Profile) => {
-        console.log(request.body);
+    //    console.log(request.body);
 
         const params = request.body || {};
         const email = params.email;
@@ -32,7 +32,7 @@ export const authService = {
             authService.informWrongCredentials(response);
         }
     },
-    
+
     logOut: (_request, response, profile: Profile) => {
         firebase.auth().signOut()
         .then(() => {
@@ -41,9 +41,9 @@ export const authService = {
         })
         .catch((error) => {
             response.json({
-                error: errors.notLoggeOut,
-                additionalInfo: error
+                additionalInfo: error,
+                error: errors.notLoggeOut
             });
-        });    
+        });
     }
 }

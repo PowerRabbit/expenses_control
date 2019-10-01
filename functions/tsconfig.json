@@ -1,14 +1,15 @@
 {
-  "compilerOptions": {
-    "lib": ["es6", "dom"],
-    "module": "commonjs",
-    "noImplicitReturns": true,
-    "outDir": "lib",
-    "sourceMap": true,
-    "target": "es6"
-  },
-  "compileOnSave": true,
-  "include": [
-    "src"
-  ]
+    "compilerOptions": {
+        "lib": ["es6", "dom"],
+        "module": "es6",
+        "moduleResolution": "node",
+        "noImplicitReturns": true,
+        "outDir": "dist",
+        "sourceMap": true,
+        "target": "es6"
+    },
+    "compileOnSave": true,
+    "include": [
+        "src/**/*"
+    ]
 }
